@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Mike Gleason jr Couturier
-  description: A firewall role which doesn't suck
+  description: A role to manage iptables rules which doesn't suck.
   company: N/A
   issue_tracker_url: https://github.com/mikegleasonjr/ansible-role-firewall/issues
   license: BSD
