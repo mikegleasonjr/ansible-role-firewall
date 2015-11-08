@@ -113,9 +113,9 @@ ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 0
 
 Now that takes care of the default rules. What about overriding?
 
-The role provide 2 more variables where you can define more rules. Rules defined in those variables will be merged with the default rules. In fact, rules in `firewall_v4_host_rules` will be merged with `firewall_v4_group_rules`, and then the result will be merged back with the defaults.
+The role provides 2 more variables where you can define more rules. Rules defined in those variables will be merged with the default rules. In fact, rules in `firewall_v4_host_rules` will be merged with `firewall_v4_group_rules`, and then the result will be merged back with the defaults.
 
-This permits 3 levels of rules definition and overriding. I simply chose the names to match how the variable precedence works in Ansible (`all` -> `group` -> `host`). See the example playbook below to see rules overriding in action.
+This allows 3 levels of rules definition and overriding. I simply chose the names to match how the variable precedence works in Ansible (`all` -> `group` -> `host`). See the example playbook below to see rules overriding in action.
 
 Scripts are also installed to load the rules at boot. Their location can be changed in the relevant platform variables:
 
