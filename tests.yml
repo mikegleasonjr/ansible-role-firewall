@@ -1,0 +1,28 @@
+---
+- hosts: all
+  sudo: true
+
+  roles:
+    - role: .
+      firewall_v4_group_rules:
+        400 allow http:
+          - -A INPUT -p tcp --dport http -j ACCEPT
+        400 allow 7890:
+          - -A INPUT -p tcp --dport 7890 -j ACCEPT
+      firewall_v4_host_rules:
+        400 allow 7890: []
+
+  tasks:
+    - name: Retrieve v4 rules
+      command: iptables -L -n
+      changed_when: false
+      register: v4_rules
+    - name: Check that a default rule has been applied
+      assert:
+        that: "'tcp dpt:22' in v4_rules.stdout"
+    - name: Check that a group rule has been applied
+      assert:
+        that: "'tcp dpt:80' in v4_rules.stdout"
+    - name: Check that deleted rules are deleted
+      assert:
+        that: "'tcp dpt:7890' not in v4_rules.stdout"

@@ -1,0 +1,21 @@
+---
+firewall_v4_default_rules:
+  001 default policies:
+    - -P INPUT ACCEPT
+    - -P OUTPUT ACCEPT
+    - -P FORWARD DROP
+  002 allow loopback:
+    - -A INPUT -i lo -j ACCEPT
+  003 allow ping replies:
+    - -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+    - -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
+  100 allow established related:
+    - -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+  200 allow ssh:
+    - -A INPUT -p tcp --dport ssh -j ACCEPT
+  999 drop everything:
+    - -P INPUT DROP
+
+firewall_v4_group_rules: {}
+
+firewall_v4_host_rules: {}

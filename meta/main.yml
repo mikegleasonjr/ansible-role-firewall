@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Mike Gleason jr Couturier
+  description: A firewall role which doesn't suck
+  company: N/A
+  issue_tracker_url: https://github.com/mikegleasonjr/ansible-role-firewall/issues
+  license: BSD
+  min_ansible_version: 1.2
+  platforms:
+  - name: Ubuntu
+    versions:
+      - all
+  - name: Debian
+    versions:
+      - all
+  categories:
+    - networking
+    - system
+dependencies: []

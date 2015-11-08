@@ -1,0 +1,12 @@
+---
+- name: Generate v4 rules
+  template: src=generated.v4.j2 dest=/etc/iptables.v4.generated owner=root group=root mode=755
+  register: v4_script
+
+- name: Load v4 rules
+  command: /etc/iptables.v4.generated
+  when: v4_script|changed
+
+- name: Save v4 rules
+  shell: iptables-save -c > /etc/iptables.v4.saved
+  when: v4_script|changed
