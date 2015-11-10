@@ -1,6 +1,8 @@
 Ansible Firewall Role
 =========
 
+[![Build Status](https://travis-ci.org/mikegleasonjr/ansible-role-firewall.svg?branch=master)](https://travis-ci.org/mikegleasonjr/ansible-role-firewall)
+
 After I found out `UFW` was too limited in terms of functionalities, I tried several firewall roles out there but none satisfied the requirements I had:
 
 - Support virtually all iptables rules from the start
