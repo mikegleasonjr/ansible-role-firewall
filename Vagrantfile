@@ -6,11 +6,11 @@ boxes = {
     :cpu => "2",
     :ram => "256"
   },
-  # "centos/7" => {
-  #   :ip  => '192.168.33.11',
-  #   :cpu => "2",
-  #   :ram => "256"
-  # },
+  "centos/7" => {
+    :ip  => '192.168.33.11',
+    :cpu => "2",
+    :ram => "256"
+  },
 }
 
 Vagrant.configure("2") do |config|

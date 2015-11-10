@@ -10,12 +10,12 @@ After I found out `UFW` was too limited in terms of functionalities, I tried sev
 - Simplicity (not having to learn how a role variables would generate the rules)
 - Persistence (reload the rules at boot)
 
-This role is an attempt to solve these requirements. It currently supports only ipv4 on Debian distributions.
+This role is an attempt to solve these requirements. It currently supports only ipv4 on Debian and RedHat distributions.
 
 Requirements
 ------------
 
-`iptables` (installed by default on all official Ubuntu and CentOS distributions)
+`iptables` (installed by default on all official Debian and RedHat distributions)
 
 Installation
 ------------
@@ -116,16 +116,6 @@ Now that takes care of the default rules. What about overriding?
 The role provides 2 more variables where you can define more rules. Rules defined in those variables will be merged with the default rules. In fact, rules in `firewall_v4_host_rules` will be merged with `firewall_v4_group_rules`, and then the result will be merged back with the defaults.
 
 This allows 3 levels of rules definition and overriding. I simply chose the names to match how the variable precedence works in Ansible (`all` -> `group` -> `host`). See the example playbook below to see rules overriding in action.
-
-Scripts are also installed to load the rules at boot. Their location can be changed in the relevant platform variables:
-
-Debian (`vars/Debian.yml`):
-
-```
-firewall_v4_save_script: /etc/network/if-post-down.d/iptables-v4
-
-firewall_v4_restore_script: /etc/network/if-pre-up.d/iptables-v4
-```
 
 Example Playbook
 ----------------

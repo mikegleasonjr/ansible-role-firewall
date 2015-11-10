@@ -1,0 +1,6 @@
+---
+- name: Ensure iptables service is installed
+  yum: name=iptables-services state=present
+
+- name: Ensure iptables service is enabled & started
+  service: name=iptables enabled=yes state=started

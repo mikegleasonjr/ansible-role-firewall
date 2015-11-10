@@ -13,6 +13,9 @@ galaxy_info:
   - name: Debian
     versions:
       - all
+  - name: EL
+    versions:
+    - all
   categories:
     - networking
     - system

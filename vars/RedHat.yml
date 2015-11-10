@@ -1,0 +1,2 @@
+---
+firewall_v4_saved_rules_path: /etc/sysconfig/iptables

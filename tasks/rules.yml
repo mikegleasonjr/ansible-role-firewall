@@ -8,5 +8,5 @@
   when: v4_script|changed
 
 - name: Save v4 rules
-  shell: iptables-save -c > /etc/iptables.v4.saved
+  shell: iptables-save -c > {{ firewall_v4_saved_rules_path }}
   when: v4_script|changed
