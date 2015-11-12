@@ -2,6 +2,7 @@ Ansible Firewall Role
 =========
 
 [![Build Status](https://travis-ci.org/mikegleasonjr/ansible-role-firewall.svg?branch=master)](https://travis-ci.org/mikegleasonjr/ansible-role-firewall)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-mikegleasonjr.firewall-5bbdbf.svg?style=flat)](https://galaxy.ansible.com/detail#/role/5878)
 
 After I found out `UFW` was too limited in terms of functionalities, I tried several firewall roles out there but none satisfied the requirements I had:
 
