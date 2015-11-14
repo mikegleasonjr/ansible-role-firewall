@@ -10,7 +10,7 @@ After I found out `UFW` was too limited in terms of functionalities, I tried sev
 - Allow granular rules addition/overriding for specific hosts
 - Easily inject variables in the rules
 - Allow rules ordering
-- Simplicity (not having to learn how a role variables would generate the rules)
+- Simplicity (not having to learn how role variables would generate the rules)
 - Persistence (reload the rules at boot)
 
 This role is an attempt to solve these requirements. It currently supports only ipv4 on Debian and RedHat distributions.
@@ -188,4 +188,18 @@ BSD
 Contributing
 -------
 
-A vagrant environment has been provided to test the role on different distributions. Add your tests in `tests.yml`.
+A vagrant environment has been provided to test the role on different distributions. Add your tests in `tests.yml` and...
+
+```
+$ vagrant up
+$ vagrant provision
+```
+
+Author Information
+------------------
+
+Mike Gleason jr Couturier (mikegleasonjr@gmail.com)
+
+Other roles from the same author:
+
+- [swap](https://github.com/mikegleasonjr/ansible-role-swap)

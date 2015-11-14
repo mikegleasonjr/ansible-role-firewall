@@ -1,5 +1,3 @@
-# https://vagrantcloud.com/
-
 boxes = {
   "ubuntu/trusty64" => {
     :ip  => '192.168.33.10',
@@ -20,8 +18,8 @@ Vagrant.configure("2") do |config|
       machine.vm.network :private_network, ip: options[:ip]
 
       machine.vm.provider "virtualbox" do |vb|
-        vb.customize ["modifyvm", :id, "--memory", options[:ram]]
-        vb.customize ["modifyvm", :id, "--cpus", options[:cpu]]
+        vb.memory = options[:ram]
+        vb.cpus = options[:cpu]
       end
 
       machine.vm.provision "ansible" do |ansible|
