@@ -5,6 +5,8 @@
 
 - name: Load v4 rules
   command: /etc/iptables.v4.generated
+  register: v4_script_load_result
+  failed_when: v4_script_load_result.rc != 0 or 'unknown option' in v4_script_load_result.stderr
   when: v4_script|changed
 
 - name: Save v4 rules
