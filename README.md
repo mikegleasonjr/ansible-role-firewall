@@ -37,7 +37,7 @@ firewall_v4_default_rules:
     - -P OUTPUT ACCEPT
     - -P FORWARD DROP
   002 allow loopback:
-    - -A INPUT -i lo -j ACCEPT
+    - -A INPUT -i lo -s 127.0.0.0/8 -d 127.0.0.0/8 -j ACCEPT
   003 allow ping replies:
     - -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
     - -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
@@ -78,7 +78,7 @@ iptables -P OUTPUT ACCEPT
 iptables -P FORWARD DROP
 
 # 002 allow loopback
-iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i lo -s 127.0.0.0/8 -d 127.0.0.0/8 -j ACCEPT
 
 # 003 allow ping replies
 iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
