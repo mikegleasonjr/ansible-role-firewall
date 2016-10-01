@@ -8,7 +8,3 @@
   register: v4_script_load_result
   failed_when: v4_script_load_result.rc != 0 or 'unknown option' in v4_script_load_result.stderr
   when: v4_script|changed
-
-- name: Save v4 rules
-  shell: iptables-save -c > {{ firewall_v4_saved_rules_path }}
-  when: v4_script|changed

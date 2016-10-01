@@ -1,4 +1,8 @@
 ---
+- name: Save v4 rules (/etc/sysconfig/iptables)
+  shell: iptables-save -c > /etc/sysconfig/iptables
+  when: v4_script|changed
+
 - name: Ensure iptables service is installed
   yum: name=iptables-services state=present
   when: ansible_distribution_major_version >= '7'

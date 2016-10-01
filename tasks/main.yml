@@ -1,5 +1,4 @@
 ---
-- include: vars.yml
 - include: rules.yml
 
 - include: persist-debian.yml
