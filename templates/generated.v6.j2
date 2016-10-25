@@ -1,0 +1,26 @@
+#!/bin/sh
+# {{ ansible_managed }}
+{% set merged = firewall_v6_default_rules.copy() %}
+{% set _ = merged.update(firewall_v6_group_rules) %}
+{% set _ = merged.update(firewall_v6_host_rules) %}
+
+# flush rules & delete user-defined chains
+ip6tables -F
+ip6tables -X
+ip6tables -t raw -F
+ip6tables -t raw -X
+ip6tables -t nat -F
+ip6tables -t nat -X
+ip6tables -t mangle -F
+ip6tables -t mangle -X
+
+{% for group, rules in merged|dictsort  %}
+# {{ group }}
+{% if not rules %}
+# (none)
+{% endif %}
+{% for rule in rules %}
+ip6tables {{ rule }}
+{% endfor %}
+
+{% endfor %}
