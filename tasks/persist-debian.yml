@@ -8,13 +8,22 @@
 - name: Remove any obsolete v4 saved rules
   file: path=/etc/iptables.v4.saved state=absent
 
+- name: Remove any obsolete v6 save script
+  file: path=/etc/network/if-post-down.d/iptables-v6 state=absent
+
+- name: Remove any obsolete v6 restore script
+  file: path=/etc/network/if-pre-up.d/iptables-v6 state=absent
+
+- name: Remove any obsolete v6 saved rules
+  file: path=/etc/iptables.v6.saved state=absent
+
 - name: Install iptables-persistent
   apt: name=iptables-persistent state=present
 
 - name: Check if netfilter-persistent is present
   shell: which netfilter-persistent
   register: is_netfilter
-  when: v4_script|changed
+  when: v4_script|changed or v6_script|changed
   changed_when: false
   ignore_errors: yes
 
@@ -25,3 +34,13 @@
 - name: Save v4 rules (iptables-persistent)
   command: /etc/init.d/iptables-persistent save
   when: v4_script|changed and is_netfilter.rc == 1
+
+- name: Save v6 rules (netfilter-persistent)
+  command: netfilter-persistent save
+  when: v6_script|changed and is_netfilter.rc == 0
+
+- name: Save v6 rules (iptables-persistent)
+  command: /etc/init.d/iptables-persistent save
+  when: v6_script|changed and is_netfilter.rc == 1
+
+

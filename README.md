@@ -28,7 +28,7 @@ Installation
 Role Variables
 --------------
 
-There are only 3 dictionaries to override in `defaults/main.yml`:
+There are only 6 dictionaries to override in `defaults/main.yml`:
 
 ```
 firewall_v4_default_rules:
@@ -51,6 +51,28 @@ firewall_v4_default_rules:
 firewall_v4_group_rules: {}
 
 firewall_v4_host_rules: {}
+
+firewall_v6_default_rules:
+  001 default policies:
+    - -P INPUT ACCEPT
+    - -P OUTPUT ACCEPT
+    - -P FORWARD DROP
+  002 allow loopback:
+    - -A INPUT -i lo -s ::1/128 -d ::1/128 -j ACCEPT
+    - -A INPUT -i lo -s fe80::/64 -d fe80::/64 -j ACCEPT
+  003 allow ping replies:
+    - -A INPUT -p icmpv6 --icmpv6-type echo-request -j ACCEPT
+    - -A OUTPUT -p icmpv6 --icmpv6-type echo-reply -j ACCEPT
+  100 allow established related:
+    - -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+  200 allow ssh:
+    - -A INPUT -p tcp --dport ssh -j ACCEPT
+  999 drop everything:
+    - -P INPUT DROP
+
+firewall_v6_group_rules: {}
+
+firewall_v6_host_rules: {}
 
 ```
 

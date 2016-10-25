@@ -8,3 +8,13 @@
   register: v4_script_load_result
   failed_when: v4_script_load_result.rc != 0 or 'unknown option' in v4_script_load_result.stderr
   when: v4_script|changed
+
+- name: Generate v6 rules
+  template: src=generated.v6.j2 dest=/etc/iptables.v6.generated owner=root group=root mode=755
+  register: v6_script
+
+- name: Load v6 rules
+  command: /etc/iptables.v6.generated
+  register: v6_script_load_result
+  failed_when: v6_script_load_result.rc != 0 or 'unknown option' in v6_script_load_result.stderr
+  when: v6_script|changed
