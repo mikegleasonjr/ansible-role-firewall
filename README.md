@@ -17,7 +17,7 @@ This role is an attempt to solve these requirements.
 
 It supports **ipv4** and **ipv6*** on Debian and RedHat distributions.
 
-*ipv6 support was brought up thanks to [@maloddon](https://github.com/maloddon). It is currently in early stages and knowledgable people should review the [default rules](https://github.com/mikegleasonjr/ansible-role-firewall/blob/ipv6/defaults/main.yml). ipv6 rules are not configured by default. If you which to use them, don't forget to set `firewall_v6_configure` to `true`.
+*ipv6 support was brought up thanks to [@maloddon](https://github.com/maloddon). It is currently in early stages and knowledgable people should review the [default rules](https://github.com/mikegleasonjr/ansible-role-firewall/blob/master/defaults/main.yml). ipv6 rules are not configured by default. If you which to use them, don't forget to set `firewall_v6_configure` to `true`.
 
 Requirements
 ------------
