@@ -4,6 +4,8 @@
 
   roles:
     - role: .
+      firewall_v6_configure: true
+
       firewall_v4_group_rules:
         400 allow http:
           - -A INPUT -p tcp --dport http -j ACCEPT
@@ -11,6 +13,7 @@
           - -A INPUT -p tcp --dport 7890 -j ACCEPT
       firewall_v4_host_rules:
         400 allow 7890: []
+
       firewall_v6_group_rules:
         400 allow http:
           - -A INPUT -p tcp --dport http -j ACCEPT

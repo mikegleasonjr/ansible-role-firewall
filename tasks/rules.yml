@@ -2,6 +2,7 @@
 - name: Generate v4 rules
   template: src=generated.v4.j2 dest=/etc/iptables.v4.generated owner=root group=root mode=755
   register: v4_script
+  when: firewall_v4_configure
 
 - name: Load v4 rules
   command: /etc/iptables.v4.generated
@@ -12,6 +13,7 @@
 - name: Generate v6 rules
   template: src=generated.v6.j2 dest=/etc/iptables.v6.generated owner=root group=root mode=755
   register: v6_script
+  when: firewall_v6_configure
 
 - name: Load v6 rules
   command: /etc/iptables.v6.generated
