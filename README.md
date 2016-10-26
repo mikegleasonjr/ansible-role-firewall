@@ -64,7 +64,6 @@ firewall_v6_default_rules:
     - -P FORWARD DROP
   002 allow loopback:
     - -A INPUT -i lo -s ::1/128 -d ::1/128 -j ACCEPT
-    - -A INPUT -i lo -s fe80::/64 -d fe80::/64 -j ACCEPT
   003 allow ping replies:
     - -A INPUT -p icmpv6 --icmpv6-type echo-request -j ACCEPT
     - -A OUTPUT -p icmpv6 --icmpv6-type echo-reply -j ACCEPT
