@@ -1,0 +1,19 @@
+---
+- name: Save v4 rules (/etc/iptables/iptables.rules)
+  shell: iptables-save -c > /etc/iptables/iptables.rules
+  when: v4_script|changed
+
+- name: Save v6 rules (/etc/iptables/ip6tables.rules)
+  shell: iptables-save -c > /etc/iptables/ip6tables.rules
+  when: v6_script|changed
+
+- name: Ensure iptables service is installed
+  pacman: name=iptables state=present
+
+- name: Ensure iptables service is enabled & started
+  service: name=iptables enabled=yes state=started
+  when: firewall_v4_configure|default(true)|bool
+
+- name: Ensure ip6tables service is enabled & started
+  service: name=ip6tables enabled=yes state=started
+  when: firewall_v6_configure|default(true)|bool
