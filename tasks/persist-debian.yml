@@ -16,20 +16,10 @@
   changed_when: false
   ignore_errors: yes
 
-- name: Save v4 rules (netfilter-persistent)
+- name: Save rules (netfilter-persistent)
   command: netfilter-persistent save
-  when: v4_script|changed and is_netfilter.rc == 0
+  when: (v4_script|changed or v6_script|changed) and is_netfilter.rc == 0
 
-- name: Save v4 rules (iptables-persistent)
+- name: Save rules (iptables-persistent)
   command: /etc/init.d/iptables-persistent save
-  when: v4_script|changed and is_netfilter.rc == 1
-
-- name: Save v6 rules (netfilter-persistent)
-  command: netfilter-persistent save
-  when: v6_script|changed and is_netfilter.rc == 0
-
-- name: Save v6 rules (iptables-persistent)
-  command: /etc/init.d/iptables-persistent save
-  when: v6_script|changed and is_netfilter.rc == 1
-
-
+  when: (v4_script|changed or v6_script|changed) and is_netfilter.rc == 1
