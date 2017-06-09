@@ -21,3 +21,6 @@
 - name: Ensure ip6tables service is enabled & started
   service: name=ip6tables enabled=yes state=started
   when: firewall_v6_configure
+
+- name: Ensure firewalld is disabled and stopped
+  service: name=firewalld enabled=no state=stopped
