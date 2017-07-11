@@ -22,7 +22,8 @@ It supports **ipv4** and **ipv6*** on Debian and RedHat distributions.
 Requirements
 ------------
 
-`iptables` (installed by default on all official Debian and RedHat distributions)
+* Ansible 2.2.1.0
+* `iptables` (installed by default on all official Debian and RedHat distributions)
 
 Installation
 ------------

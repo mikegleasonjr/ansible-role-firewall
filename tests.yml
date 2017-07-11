@@ -27,32 +27,42 @@
       command: iptables -L -n
       changed_when: false
       register: v4_rules
+      when: not ansible_check_mode
     - name: Check that INPUT policy has been applied
       assert:
         that: "'Chain INPUT (policy DROP' in v4_rules.stdout"
+      when: not ansible_check_mode
     - name: Check that a default rule has been applied
       assert:
         that: "'tcp dpt:22' in v4_rules.stdout"
+      when: not ansible_check_mode
     - name: Check that a group rule has been applied
       assert:
         that: "'tcp dpt:80' in v4_rules.stdout"
+      when: not ansible_check_mode
     - name: Check that deleted rules are deleted
       assert:
         that: "'tcp dpt:7890' not in v4_rules.stdout"
+      when: not ansible_check_mode
 
     - name: Retrieve v6 rules
       command: ip6tables -L -n
       changed_when: false
       register: v6_rules
+      when: not ansible_check_mode
     - name: Check that INPUT policy has been applied
       assert:
         that: "'Chain INPUT (policy DROP' in v6_rules.stdout"
+      when: not ansible_check_mode
     - name: Check that a default rule has been applied
       assert:
         that: "'tcp dpt:22' in v6_rules.stdout"
+      when: not ansible_check_mode
     - name: Check that a group rule has been applied
       assert:
         that: "'tcp dpt:80' in v6_rules.stdout"
+      when: not ansible_check_mode
     - name: Check that deleted rules are deleted
       assert:
         that: "'tcp dpt:7890' not in v6_rules.stdout"
+      when: not ansible_check_mode

@@ -18,8 +18,8 @@
 
 - name: Save rules (netfilter-persistent)
   command: netfilter-persistent save
-  when: (v4_script|changed or v6_script|changed) and is_netfilter.rc == 0
+  when: not ansible_check_mode and (v4_script|changed or v6_script|changed) and is_netfilter.rc == 0
 
 - name: Save rules (iptables-persistent)
   command: /etc/init.d/iptables-persistent save
-  when: (v4_script|changed or v6_script|changed) and is_netfilter.rc == 1
+  when: not ansible_check_mode and (v4_script|changed or v6_script|changed) and is_netfilter.rc == 1
