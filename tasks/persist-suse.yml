@@ -1,0 +1,18 @@
+---
+- name: Save v4 rules (/etc/sysconfig/iptables)
+  shell: iptables-save -c > /etc/sysconfig/iptables
+  when: v4_script|changed
+
+- name: Save v6 rules (/etc/sysconfig/ip6tables)
+  shell: ip6tables-save -c > /etc/sysconfig/ip6tables
+  when: v6_script|changed
+
+- name: Ensure iptables service is installed
+  zypper: name=iptables state=present
+
+- name: Ensure iptables service is enabled & started
+  service: name=iptables enabled=yes state=started
+
+- name: Ensure ip6tables service is enabled & started
+  service: name=ip6tables enabled=yes state=started
+  when: firewall_v6_configure

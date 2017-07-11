@@ -16,6 +16,9 @@ galaxy_info:
   - name: EL
     versions:
     - all
+  - name: Suse
+    versions:
+      -all
   categories:
     - networking
     - system

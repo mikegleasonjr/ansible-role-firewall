@@ -6,3 +6,6 @@
 
 - include: persist-redhat.yml
   when: ansible_os_family == 'RedHat'
+
+- include: persist-suse.yml
+  when: ansible_os_family == 'Suse'
