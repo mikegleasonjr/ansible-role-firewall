@@ -16,7 +16,10 @@ galaxy_info:
   - name: EL
     versions:
     - all
-  categories:
+  - name: ArchLinux
+    versions:
+    - all
+    categories:
     - networking
     - system
 dependencies: []
