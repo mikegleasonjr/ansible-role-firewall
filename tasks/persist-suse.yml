@@ -12,7 +12,3 @@
 
 - name: Ensure iptables service is enabled & started
   service: name=SuSEfirewall2 enabled=yes state=started
-
-- name: Ensure ip6tables service is enabled & started
-  service: name=ip6tables enabled=yes state=started
-  when: firewall_v6_configure
