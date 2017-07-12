@@ -8,10 +8,10 @@
   when: v6_script|changed
 
 - name: Ensure iptables service is installed
-  zypper: name=iptables state=present
+  zypper: name=SuSEfirewall2 state=present
 
 - name: Ensure iptables service is enabled & started
-  service: name=iptables enabled=yes state=started
+  service: name=SuSEfirewall2 enabled=yes state=started
 
 - name: Ensure ip6tables service is enabled & started
   service: name=ip6tables enabled=yes state=started
