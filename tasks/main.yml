@@ -1,4 +1,7 @@
 ---
+- name: Ensure iptables is installed.
+  package: name=iptables state=installed
+
 - include: rules.yml
 
 - include: persist-debian.yml
