@@ -5,14 +5,8 @@
 {% set _ = merged.update(firewall_v6_host_rules) %}
 
 # flush rules & delete user-defined chains
-ip6tables -F
-ip6tables -X
-ip6tables -t raw -F
-ip6tables -t raw -X
-ip6tables -t nat -F
-ip6tables -t nat -X
-ip6tables -t mangle -F
-ip6tables -t mangle -X
+{{ firewall_v6_flush_chain_command }}
+{{ firewall_v6_delete_chain_command }}
 
 {% for group, rules in merged|dictsort  %}
 # {{ group }}
