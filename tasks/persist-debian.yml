@@ -15,6 +15,7 @@
   when: v4_script|changed or v6_script|changed
   changed_when: false
   ignore_errors: yes
+  check_mode: no
 
 - name: Save rules (netfilter-persistent)
   command: netfilter-persistent save
