@@ -7,7 +7,10 @@
 - name: Load v4 rules
   command: /etc/iptables.v4.generated
   register: v4_script_load_result
-  failed_when: v4_script_load_result.rc != 0 or 'unknown option' in v4_script_load_result.stderr
+  failed_when: >-
+    v4_script_load_result.rc != 0 or
+    'unknown option' in v4_script_load_result.stderr or
+    'Table does not exist' in v4_script_load_result.stderr
   when: v4_script|changed
 
 - name: Generate v6 rules
@@ -18,5 +21,8 @@
 - name: Load v6 rules
   command: /etc/iptables.v6.generated
   register: v6_script_load_result
-  failed_when: v6_script_load_result.rc != 0 or 'unknown option' in v6_script_load_result.stderr
+  failed_when: >-
+    v6_script_load_result.rc != 0 or
+    'unknown option' in v6_script_load_result.stderr or
+    'Table does not exist' in v6_script_load_result.stderr
   when: v6_script|changed
