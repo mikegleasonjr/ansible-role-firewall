@@ -2,6 +2,18 @@
 firewall_v4_configure: true
 firewall_v6_configure: false
 
+firewall_v4_flush_chain_command: |
+  iptables --flush
+  iptables -t raw --flush
+  iptables -t nat --flush
+  iptables -t mangle --flush
+
+firewall_v4_delete_chain_command: |
+  iptables --delete-chain
+  iptables -t raw --delete-chain
+  iptables -t nat --delete-chain
+  iptables -t mangle --delete-chain
+
 firewall_v4_default_rules:
   001 default policies:
     - -P INPUT ACCEPT
@@ -20,6 +32,18 @@ firewall_v4_default_rules:
     - -P INPUT DROP
 firewall_v4_group_rules: {}
 firewall_v4_host_rules: {}
+
+firewall_v6_flush_chain_command: |
+  ip6tables --flush
+  ip6tables -t raw --flush
+  ip6tables -t nat --flush
+  ip6tables -t mangle --flush
+
+firewall_v6_delete_chain_command: |
+  ip6tables --delete-chain
+  ip6tables -t raw --delete-chain
+  ip6tables -t nat --delete-chain
+  ip6tables -t mangle --delete-chain
 
 firewall_v6_default_rules:
   001 default policies:
