@@ -20,6 +20,9 @@ iptables -t mangle -X
 # (none)
 {% endif %}
 {% for rule in rules %}
+{% if not "-m comment --comment" in rule %}
+iptables {{ rule }} -m comment --comment "{{ group }}"
+{% else %}
 iptables {{ rule }}
 {% endfor %}
 
