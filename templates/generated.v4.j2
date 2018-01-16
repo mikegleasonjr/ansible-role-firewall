@@ -24,6 +24,7 @@ iptables -t mangle -X
 iptables {{ rule }} -m comment --comment "{{ group }}"
 {% else %}
 iptables {{ rule }}
+{% endif %}
 {% endfor %}
 
 {% endfor %}
