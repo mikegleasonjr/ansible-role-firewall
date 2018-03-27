@@ -1,5 +1,6 @@
 ---
 firewall_v4_configure: true
+firewall_v4_add_comment: false
 firewall_v6_configure: false
 
 firewall_v4_flush_rules:

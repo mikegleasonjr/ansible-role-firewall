@@ -15,7 +15,11 @@ iptables {{ rule }}
 # (none)
 {% endif %}
 {% for rule in rules %}
+{% if not "-m comment --comment" in rule and firewall_v4_add_comment %}
+iptables {{ rule }} -m comment --comment "{{ group }}"
+{% else %}
 iptables {{ rule }}
+{% endif %}
 {% endfor %}
 
 {% endfor %}
