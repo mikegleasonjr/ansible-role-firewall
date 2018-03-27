@@ -3,7 +3,7 @@
   become: true
 
   roles:
-    - role: .
+    - role: '{{playbook_dir}}'
       firewall_v6_configure: true
 
       firewall_v4_group_rules:
