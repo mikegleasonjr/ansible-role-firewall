@@ -1,0 +1,26 @@
+---
+- name: make sure ipv6 is available
+  lineinfile:
+    path: /etc/sysconfig/SuSEfirewall2
+    regexp: '^FW_IPv6='
+    line: 'FW_IPv6=""'
+
+- name: avoid timeouts because of dropped IPv6 Packets
+  lineinfile:
+    path: /etc/sysconfig/SuSEfirewall2
+    regexp: '^FW_IPv6_REJECT_OUTGOING='
+    line: 'FW_IPv6_REJECT_OUTGOING=""'
+
+- name: Save v4 rules (/etc/sysconfig/iptables)
+  shell: iptables-save -c > /etc/sysconfig/iptables
+  when: v4_script|changed
+
+- name: Save v6 rules (/etc/sysconfig/ip6tables)
+  shell: ip6tables-save -c > /etc/sysconfig/ip6tables
+  when: v6_script|changed
+
+- name: Ensure iptables service is installed
+  zypper: name=SuSEfirewall2 state=present
+
+- name: Ensure iptables service is enabled & started
+  service: name=SuSEfirewall2 enabled=yes state=started
