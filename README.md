@@ -15,9 +15,7 @@ After I found out `UFW` was too limited in terms of functionalities, I tried sev
 
 This role is an attempt to solve these requirements.
 
-It supports **ipv4** and **ipv6*** on Debian and RedHat distributions.
-
-*ipv6 support was brought up thanks to [@maloddon](https://github.com/maloddon). It is currently in early stages and knowledgable people should review the [default rules](https://github.com/mikegleasonjr/ansible-role-firewall/blob/master/defaults/main.yml). ipv6 rules are not configured by default. If you which to use them, don't forget to set `firewall_v6_configure` to `true`.
+It supports **ipv4** and **ipv6*** on Debian and RedHat distributions. ipv6 rules are not configured by default. If you which to use them, don't forget to set `firewall_v6_configure` to `true`.
 
 Requirements
 ------------
@@ -36,9 +34,19 @@ Role Variables
 `defaults/main.yml`:
 
 ```
+---
 firewall_v4_configure: true
 firewall_v6_configure: false
 
+firewall_v4_flush_rules:
+  - -F
+  - -X
+  - -t raw -F
+  - -t raw -X
+  - -t nat -F
+  - -t nat -X
+  - -t mangle -F
+  - -t mangle -X
 firewall_v4_default_rules:
   001 default policies:
     - -P INPUT ACCEPT
@@ -58,6 +66,15 @@ firewall_v4_default_rules:
 firewall_v4_group_rules: {}
 firewall_v4_host_rules: {}
 
+firewall_v6_flush_rules:
+  - -F
+  - -X
+  - -t raw -F
+  - -t raw -X
+  - -t nat -F
+  - -t nat -X
+  - -t mangle -F
+  - -t mangle -X
 firewall_v6_default_rules:
   001 default policies:
     - -P INPUT ACCEPT
@@ -76,10 +93,9 @@ firewall_v6_default_rules:
     - -P INPUT DROP
 firewall_v6_group_rules: {}
 firewall_v6_host_rules: {}
-
 ```
 
-The keys to the `*_rules` dictionaries (`001 default policies`, `002 allow loopback`, ...) can be anything. They are only used for rules **ordering** and **overriding**. On rules generation, the keys are sorted alphabetically. That's why I chose here the 001s and 999s.
+The keys to the `*_rules` dictionaries, except the flush rules, can be anything. They are only used for rules **ordering** and **overriding**. On rules generation, the keys are sorted alphabetically. That's why I chose here the 001s and 999s.
 
 Those defaults will generate the following script to be executed on the host (for ipv4):
 
@@ -87,7 +103,7 @@ Those defaults will generate the following script to be executed on the host (fo
 #!/bin/sh
 # Ansible managed: <redacted>
 
-# flush rules & delete user-defined chains
+# flush rules
 iptables -F
 iptables -X
 iptables -t raw -F

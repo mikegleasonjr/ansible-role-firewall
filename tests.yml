@@ -6,6 +6,14 @@
     - role: '{{playbook_dir}}'
       firewall_v6_configure: true
 
+      firewall_v4_flush_rules:
+        - -F
+        - -X
+        - -t raw -F
+        - -t raw -X
+        - -t mangle -F
+        - -t mangle -X
+
       firewall_v4_group_rules:
         400 allow http:
           - -A INPUT -p tcp --dport http -j ACCEPT
@@ -13,6 +21,14 @@
           - -A INPUT -p tcp --dport 7890 -j ACCEPT
       firewall_v4_host_rules:
         400 allow 7890: []
+
+      firewall_v6_flush_rules:
+        - -F
+        - -X
+        - -t raw -F
+        - -t raw -X
+        - -t mangle -F
+        - -t mangle -X
 
       firewall_v6_group_rules:
         400 allow http:

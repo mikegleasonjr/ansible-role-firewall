@@ -2,6 +2,15 @@
 firewall_v4_configure: true
 firewall_v6_configure: false
 
+firewall_v4_flush_rules:
+  - -F
+  - -X
+  - -t raw -F
+  - -t raw -X
+  - -t nat -F
+  - -t nat -X
+  - -t mangle -F
+  - -t mangle -X
 firewall_v4_default_rules:
   001 default policies:
     - -P INPUT ACCEPT
@@ -21,6 +30,15 @@ firewall_v4_default_rules:
 firewall_v4_group_rules: {}
 firewall_v4_host_rules: {}
 
+firewall_v6_flush_rules:
+  - -F
+  - -X
+  - -t raw -F
+  - -t raw -X
+  - -t nat -F
+  - -t nat -X
+  - -t mangle -F
+  - -t mangle -X
 firewall_v6_default_rules:
   001 default policies:
     - -P INPUT ACCEPT
