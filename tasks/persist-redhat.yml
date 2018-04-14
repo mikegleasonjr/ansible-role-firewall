@@ -1,11 +1,11 @@
 ---
 - name: Save v4 rules (/etc/sysconfig/iptables)
   shell: iptables-save -c > /etc/sysconfig/iptables
-  when: v4_script|changed
+  when: v4_script is changed
 
 - name: Save v6 rules (/etc/sysconfig/ip6tables)
   shell: ip6tables-save -c > /etc/sysconfig/ip6tables
-  when: v6_script|changed
+  when: v6_script is changed
 
 - name: Ensure iptables service is installed
   yum: name=iptables-services state=present
