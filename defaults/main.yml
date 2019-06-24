@@ -2,6 +2,8 @@
 firewall_v4_configure: true
 firewall_v6_configure: false
 
+firewall_persist_rules: false
+
 firewall_v4_flush_rules:
   - -F
   - -X
