@@ -31,9 +31,9 @@ Installation
 Persistence
 ------------
 
-The rules will not be persisted by default. This allows testing of the rules and leaves a way for you to gain access after locking yourself out. If the rules has not been persisted the rules can be flushed by restarting the server.
+The rules will be persisted by default. 
 
-Persisting the rules is done by setting `firewall_persist_rules` to `true`. 
+To test rules set `firewall_persist_rules` to `false`. This allows testing of the rules and leaves a way for you to gain access after locking yourself out. If the rules has not been persisted the rules can be flushed by restarting the server.
 
 
 Role Variables
