@@ -9,6 +9,12 @@
 - name: Install iptables-persistent
   apt: name=iptables-persistent state=present
 
+- name: Check if iptables-nft is selected for Debian Buster
+  alternatives:
+    name: iptables
+    path: /usr/sbin/iptables-nft
+  when: ansible_distribution_release == 'buster'
+
 - name: Check if netfilter-persistent is present
   shell: which netfilter-persistent
   register: is_netfilter
