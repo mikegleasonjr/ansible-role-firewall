@@ -9,6 +9,9 @@
 - name: Install iptables-persistent
   apt: name=iptables-persistent state=present
 
+- name: Install ipset-persistent
+  apt: name=ipset-persistent state=present
+
 - name: Check if netfilter-persistent is present
   shell: which netfilter-persistent
   register: is_netfilter
