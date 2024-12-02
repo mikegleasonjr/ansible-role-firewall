@@ -1,5 +1,6 @@
 #!/bin/sh
 # {{ ansible_managed }}
+set -e
 {% set merged = firewall_v4_default_rules.copy() %}
 {% set _ = merged.update(firewall_v4_group_rules) %}
 {% set _ = merged.update(firewall_v4_host_rules) %}
